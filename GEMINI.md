@@ -12,7 +12,8 @@
 ### Architecture & Components
 - **`src/App.jsx`:** Shuffles the deck, tracks drawn cards, and displays the completed reading.
 - **`src/data/deck.js`:** Generates the 78-card deck object, mapping names to local image paths.
-- **`src/data/meanings.js`:** Contains upright and reversed interpretations for every card and reflection prompts for each spread position.
+- **`src/data/meanings.js`:** Contains upright and reversed meanings, themes, and next steps for every card.
+- **`src/data/combinedReading.js`:** Connects the three card interpretations in position order.
 - **`src/components/`:**
   - `Card.jsx`: Handles the 3D flip animation and card rendering (face-up/down, reversed).
   - `Spread.jsx`: Layout container for the 3-card reading.
@@ -56,7 +57,7 @@ npx gh-pages -d dist
 ### Key Logic
 - **Shuffle:** Implements the Fisher-Yates algorithm in `App.jsx`.
 - **Card State:** Cards include `revealed` (boolean) and `reversed` (boolean) properties.
-- **Meanings:** The `getReadingInsight` function returns a card-specific interpretation and a prompt based on its orientation and spread position.
+- **Meanings:** `getCardInterpretation` selects orientation-specific content. `getCombinedReading` uses it to write one interpretation and reflection prompt for the spread.
 
 ### Asset Management
 - Card images follow a specific naming convention:

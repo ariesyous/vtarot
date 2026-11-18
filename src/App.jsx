@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { deck } from "./data/deck";
-import { getReadingInsight } from "./data/meanings";
 import Spread from "./components/Spread";
 import Controls from "./components/Controls";
+import ReadingSummary from "./components/ReadingSummary";
 import "./App.css";
 
 const POSITIONS = ["Past", "Present", "Future"];
@@ -28,7 +28,7 @@ function App() {
   const firstCard = useRef(null);
   const readingHeading = useRef(null);
   const hasCards = cards.length > 0;
-  const isComplete = hasCards && cards.every(card => card.revealed);
+  const isComplete = cards.length === POSITIONS.length && cards.every(card => card.revealed);
 
   useEffect(() => {
     if (isComplete) {
@@ -73,29 +73,12 @@ function App() {
         />
 
         {isComplete ? (
-          <section className="reading-summary" aria-labelledby="reading-heading">
-            <h2 id="reading-heading" ref={readingHeading} tabIndex={-1}>Your reading</h2>
-            <div className="reading-insights">
-              {cards.map((card, index) => {
-                const position = POSITIONS[index];
-                const { meaning, prompt } = getReadingInsight(card, position);
-
-                return (
-                  <article className="insight" key={card.id}>
-                    <p className="insight-position">
-                      {position} <span className="insight-orientation">· {card.reversed ? "Reversed" : "Upright"}</span>
-                    </p>
-                    <h3>{card.name}</h3>
-                    <p className="insight-meaning">{meaning}</p>
-                    <p className="insight-prompt">{prompt}</p>
-                  </article>
-                );
-              })}
-            </div>
-            <button className="btn btn-primary" type="button" onClick={startReading}>
-              Start a new reading
-            </button>
-          </section>
+          <ReadingSummary
+            cards={cards}
+            positions={POSITIONS}
+            headingRef={readingHeading}
+            onStartReading={startReading}
+          />
         ) : (
           <Controls
             hasCards={hasCards}
