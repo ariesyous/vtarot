@@ -6,17 +6,17 @@
 ### Key Technologies
 - **Frontend Framework:** React 19
 - **Build Tool:** Vite 8 (Beta)
-- **Styling:** Vanilla CSS (with glassmorphism aesthetics)
+- **Styling:** Vanilla CSS with a responsive spread and reduced-motion support
 - **Linting:** ESLint 9
 
 ### Architecture & Components
-- **`src/App.jsx`:** Manages the main application state, including the deck, shuffled state, drawn cards, and interpretation visibility.
+- **`src/App.jsx`:** Shuffles the deck, tracks drawn cards, and displays the completed reading.
 - **`src/data/deck.js`:** Generates the 78-card deck object, mapping names to local image paths.
-- **`src/data/meanings.js`:** Contains interpretation logic and mapping for all cards.
+- **`src/data/meanings.js`:** Contains upright and reversed interpretations for every card and reflection prompts for each spread position.
 - **`src/components/`:**
   - `Card.jsx`: Handles the 3D flip animation and card rendering (face-up/down, reversed).
   - `Spread.jsx`: Layout container for the 3-card reading.
-  - `Controls.jsx`: Action buttons for shuffling, drawing, and resetting.
+  - `Controls.jsx`: Action buttons for drawing, revealing all cards, and starting over.
 - **`public/cards/`:** Directory for card artwork (78 `.jpg` files).
 
 ## Building and Running
@@ -51,12 +51,12 @@ npx gh-pages -d dist
 - **React Components:** Functional components with Hooks (`useState`).
 - **State Management:** Local component state in `App.jsx`.
 - **Styling:** Component-specific CSS files (e.g., `Card.css`) imported directly into JSX.
-- **Animations:** CSS-based transitions and keyframes (e.g., `animate-fade-in-slow`).
+- **Animations:** CSS card flips with a reduced-motion override.
 
 ### Key Logic
 - **Shuffle:** Implements the Fisher-Yates algorithm in `App.jsx`.
 - **Card State:** Cards include `revealed` (boolean) and `reversed` (boolean) properties.
-- **Meanings:** The `getMeaning` function in `meanings.js` dynamically constructs interpretations for Minor Arcana based on suit themes and number meanings, while providing explicit mappings for Major Arcana.
+- **Meanings:** The `getReadingInsight` function returns a card-specific interpretation and a prompt based on its orientation and spread position.
 
 ### Asset Management
 - Card images follow a specific naming convention:

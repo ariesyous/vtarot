@@ -1,43 +1,91 @@
 .app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 80vh;
+  width: min(100%, 52rem);
+  margin-inline: auto;
+  padding: clamp(2.75rem, 9vw, 5.75rem) clamp(0.875rem, 4vw, 2rem) 3rem;
+  text-align: center;
 }
 
 .header {
-  margin-bottom: 2rem;
+  margin-bottom: clamp(2rem, 7vw, 3.75rem);
+}
+
+.header h1,
+.reading-summary h2,
+.insight h3 {
+  margin: 0;
+  font-family: var(--display-font);
+  font-weight: 400;
+}
+
+.header h1 {
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
 }
 
 .header p {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 1.1rem;
-  font-weight: 300;
+  margin: 1rem auto 0;
+  max-width: 34ch;
+  color: var(--muted);
+  font-size: clamp(0.93rem, 2.5vw, 1.05rem);
+  line-height: 1.55;
 }
 
-.main-content {
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.reading-summary {
+  margin: 2.5rem auto 0;
+  max-width: 38rem;
 }
 
-.deck-status {
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.4);
-  letter-spacing: 1px;
+.reading-summary h2 {
+  width: fit-content;
+  margin-inline: auto;
+  scroll-margin-top: 1.25rem;
+  font-size: clamp(1.9rem, 5vw, 2.5rem);
+}
+
+.reading-insights {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem 0 1.75rem;
+  text-align: left;
+}
+
+.insight {
+  min-width: 0;
+  padding: clamp(1rem, 4vw, 1.5rem);
+  border: 1px solid var(--line);
+  border-radius: 0.875rem;
+  background: #211a2b;
+}
+
+.insight h3 {
+  font-size: clamp(1.25rem, 4vw, 1.6rem);
+}
+
+.insight-position {
+  margin: 0 0 0.35rem;
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
-.animate-fade-in-slow {
-  animation: fadeIn 1s ease forwards;
+.insight-orientation {
+  color: var(--muted);
 }
 
-@media (max-width: 600px) {
-  .header h1 {
-    font-size: 2.2rem;
-  }
+.insight-meaning,
+.insight-prompt {
+  margin: 0.65rem 0 0;
+  line-height: 1.6;
+}
+
+.insight-meaning {
+  color: var(--muted);
+}
+
+.insight-prompt {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
 }

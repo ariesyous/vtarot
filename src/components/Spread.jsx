@@ -2,21 +2,20 @@ import React from "react";
 import Card from "./Card";
 import "./Spread.css";
 
-const POSITIONS = ["Past", "Present", "Future"];
-
-const Spread = ({ cards, onCardClick }) => {
-    return (
-        <div className="spread-container">
-            {POSITIONS.map((pos, index) => (
-                <Card
-                    key={index}
-                    position={pos}
-                    card={cards[index] || null}
-                    onClick={onCardClick}
-                />
-            ))}
-        </div>
-    );
-};
+function Spread({ positions, cards, onReveal, firstCardRef }) {
+  return (
+    <ol className="spread" role="list" aria-label="Three-card spread">
+      {positions.map((position, index) => (
+        <Card
+          key={position}
+          position={position}
+          card={cards[index]}
+          onReveal={onReveal}
+          buttonRef={index === 0 ? firstCardRef : undefined}
+        />
+      ))}
+    </ol>
+  );
+}
 
 export default Spread;

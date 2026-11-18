@@ -1,204 +1,149 @@
-.card-slot {
-  width: 160px;
-  height: 280px;
-  border: 2px dashed rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.slot-label {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+.card-position {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: var(--gold);
+  font-size: clamp(0.66rem, 2.5vw, 0.8rem);
+  font-weight: 650;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  font-weight: 500;
-  position: absolute;
-  bottom: -30px;
-  width: 100%;
-  text-align: center;
 }
 
-.card-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.card,
+.card-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 7;
+  border-radius: clamp(0.45rem, 2vw, 0.85rem);
 }
 
 .card {
-  width: 160px;
-  height: 280px;
-  perspective: 1000px;
-  cursor: pointer;
   position: relative;
-  transition: transform 0.2s ease;
-  z-index: 2;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  perspective: 60rem;
+  cursor: pointer;
+  transition: transform 180ms ease;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+.card:not(.card-revealed):hover {
+  transform: translateY(-3px);
+}
+
+.card-revealed {
+  cursor: default;
+}
+
+.card-inner,
+.card-face {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: inherit;
 }
 
 .card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
   transform-style: preserve-3d;
+  transition: transform 480ms ease;
 }
 
-.card.revealed .card-inner {
+.card-revealed .card-inner {
   transform: rotateY(180deg);
 }
 
 .card-face {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  backface-visibility: hidden;
+  box-shadow: 0 0.75rem 1.5rem #100b18a0;
 }
 
 .card-back {
-  background: linear-gradient(135deg, #2b2b36 0%, #15151c 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #987452;
+  background:
+    radial-gradient(circle at center, #f5d9a6 0 2px, #e6bb7970 3px, transparent 17%),
+    radial-gradient(ellipse at center, #533653 0%, #2a2036 65%, #231a2f 100%);
 }
 
-.card-back-pattern {
-  width: 80%;
-  height: 80%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background-image: repeating-linear-gradient(45deg,
-      transparent,
-      transparent 10px,
-      rgba(255, 255, 255, 0.03) 10px,
-      rgba(255, 255, 255, 0.03) 20px);
+.card-back::before,
+.card-back::after {
+  position: absolute;
+  content: "";
+}
+
+.card-back::before {
+  inset: 6%;
+  border: 1px solid #e6bb7966;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 50% 12%, #e6bb79 0 1px, transparent 2px),
+    radial-gradient(circle at 50% 88%, #e6bb79 0 1px, transparent 2px),
+    radial-gradient(circle at 22% 50%, #e6bb79 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 50%, #e6bb79 0 1px, transparent 2px);
+}
+
+.card-back::after {
+  inset: 50% auto auto 50%;
+  width: 44%;
+  aspect-ratio: 1;
+  border: 1px solid #e6bb7990;
+  outline: 1px solid #e6bb7944;
+  outline-offset: 4px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.card-preview {
+  position: relative;
+  opacity: 0.72;
 }
 
 .card-front {
-  background: #fdfbfb;
-  color: #2b2b36;
+  border: 1px solid #e6caa5;
+  background: #f5ebda;
   transform: rotateY(180deg);
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .card-artwork {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background-color: #fff;
-  border-radius: 12px;
 }
 
-/* 
-  If reversed, the front face is rendered upside down from the start. 
-  When rotatedY 180deg to flip, it stays upside down. 
-*/
-.card-front.reversed-card {
-  transform: rotateY(180deg) rotateZ(180deg);
+.card-artwork-reversed {
+  transform: rotate(180deg);
 }
 
-.card-body h2 {
-  opacity: 0.9;
+.card-caption {
+  min-height: 3.6rem;
+  padding-top: 0.55rem;
+  color: var(--ink);
+  line-height: 1.25;
 }
 
-.card-position-label {
-  position: absolute;
-  top: 100%;
-  margin-top: 15px;
-  width: 100%;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  z-index: 2;
-  transition: opacity 0.3s ease;
-}
-
-.card-insight {
-  position: absolute;
-  top: 90%;
-  width: 180px;
-  padding: 1.5rem 1rem 1rem 1rem;
-  background: rgba(30, 30, 40, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  font-size: 0.8rem;
-  line-height: 1.4;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1;
-  pointer-events: none;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.card-insight p {
-  margin: 0.5rem 0 0 0;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.card-insight strong {
+.card-name,
+.card-orientation {
   display: block;
-  font-size: 0.85rem;
-  color: #fff;
-  letter-spacing: 0.5px;
 }
 
-.card-insight.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+.card-name {
+  font-size: clamp(0.76rem, 2.8vw, 0.95rem);
+  font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
-
-/* Entrance animation */
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.card-orientation {
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: clamp(0.68rem, 2.2vw, 0.78rem);
 }
 
-.card {
-  animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@media (max-width: 600px) {
-
+@media (prefers-reduced-motion: reduce) {
   .card,
-  .card-slot {
-    width: 100px;
-    height: 175px;
+  .card-inner {
+    transition: none;
   }
 
-  .card-body h2 {
-    font-size: 0.8rem;
-  }
-
-  .slot-label,
-  .card-position-label {
-    font-size: 0.7rem;
-    bottom: -20px;
+  .card:not(.card-revealed):hover {
+    transform: none;
   }
 }

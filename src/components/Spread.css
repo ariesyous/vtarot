@@ -1,15 +1,13 @@
-.spread-container {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    align-items: center;
-    margin: 3rem 0;
-    flex-wrap: nowrap;
+.spread {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(0.5rem, 3vw, 1.5rem);
+  width: min(100%, 33rem);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
 }
 
-@media (max-width: 600px) {
-    .spread-container {
-        gap: 1rem;
-        margin: 2rem 0;
-    }
+.spread-card {
+  min-width: 0;
 }

@@ -46,7 +46,7 @@ const downloadFile = (file) => {
         }
 
         const fileStream = fs.createWriteStream(destPath);
-        const request = https.get(`${CDN_BASE}${file}`, (response) => {
+        https.get(`${CDN_BASE}${file}`, (response) => {
             if (response.statusCode === 301 || response.statusCode === 302) {
                 // follow redirect
                 https.get(response.headers.location, (res) => {

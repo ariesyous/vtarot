@@ -1,42 +1,37 @@
 :root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background: #121216;
-
+  font-family: system-ui, sans-serif;
+  color: #f5ebdb;
+  background: #15121f;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+  --ink: #f5ebdb;
+  --muted: #c4b7c6;
+  --gold: #e6bb79;
+  --line: #514050;
+  --display-font: Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
-  background-image:
-    radial-gradient(circle at 50% 0%, #2a2a35 0%, transparent 50%),
-    radial-gradient(circle at 0% 100%, #1a1a24 0%, transparent 50%);
-  background-attachment: fixed;
+  min-height: 100svh;
+  background:
+    radial-gradient(ellipse at 50% 5%, #332437 0%, transparent 45rem),
+    #15121f;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  font-weight: 300;
-  letter-spacing: -1px;
-  margin-bottom: 0.5rem;
+button {
+  font: inherit;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  width: 100%;
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
 }

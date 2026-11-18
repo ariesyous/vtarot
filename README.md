@@ -4,18 +4,19 @@ A beautiful, minimal frontend-only tarot web application built with React and Vi
 
 ## Features
 - Full 78-card Tarot Deck (Major and Minor Arcana)
-- Shuffle button (required before drawing)
-- 3-card spread (Past, Present, Future)
-- Reveal cards one by one (or all at once)
+- One-step draw for a three-card spread (Past, Present, Future)
+- Keyboard-accessible reveals, one card at a time or all at once
 - Support for reversed cards
-- Mobile responsive, minimal glassmorphism aesthetics
+- Card-specific interpretations and reflection prompts for each position
+- Responsive layout and reduced-motion support
 
 ## Project Structure
 - `src/components/Card.jsx`: Face-down/face-up card component with 3D flip animation.
 - `src/components/Spread.jsx`: Layout container for the 3-card spread.
-- `src/components/Controls.jsx`: Buttons for shuffling, drawing, and resetting.
+- `src/components/Controls.jsx`: Draw, reveal all, and start over.
 - `src/data/deck.js`: Data generation for the 78 tarot cards.
-- `src/App.jsx`: Main application state holding the deck logic and drawn cards.
+- `src/data/meanings.js`: Upright and reversed interpretations and reflection prompts.
+- `src/App.jsx`: Shuffle, reading state, and the completed reading.
 
 ## Setup and Development
 1. Install dependencies:
